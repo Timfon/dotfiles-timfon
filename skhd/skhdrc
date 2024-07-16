@@ -1,0 +1,97 @@
+# NOTE
+# use SHELL=dash in the plist file for skhdrc
+# ref: https://github.com/koekeishiya/skhd/issues/42
+
+alt - 0x29 : yabai -m window --toggle zoom-fullscreen
+cmd + shift - f : yabai -m window --toggle zoom-fullscreen
+
+ctrl + alt + cmd - r : yabai --restart-service
+
+ctrl + alt + cmd - c : /Users/timothyfong/themechange.sh
+
+cmd + shift - return [
+ "firefox" : echo 'c'        | nc 127.0.0.1 1337
+ *         : echo 'gFirefox' | nc 127.0.0.1 1337
+]
+
+cmd + shift - g : echo 'c' | nc -U /Users/timothy/chubby
+
+cmd + shift - e [
+  "kitty" : echo 'c'      | nc 127.0.0.1 1337
+  *       : echo 'gkitty' | nc 127.0.0.1 1337
+]
+
+cmd + shift - p [
+  "Skim" : echo 'c'     | nc 127.0.0.1 1337
+  *      : echo 'gSkim' | nc 127.0.0.1 1337
+]
+
+cmd + shift - d [
+  "Neovide" : echo 'c'     | nc 127.0.0.1 1337
+  *         : echo 'gNeovide' | nc 127.0.0.1 1337
+]
+
+cmd + shift - m : echo 'r' | nc 127.0.0.1 1337
+cmd + shift - k : echo 'x' | nc 127.0.0.1 1337
+
+shift + alt - h : yabai -m window --warp west
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - l : yabai -m window --warp east
+
+ctrl + alt - h : yabai -m window --swap west
+ctrl + alt - j : yabai -m window --swap south
+ctrl + alt - k : yabai -m window --swap north
+ctrl + alt - l : yabai -m window --swap east
+
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+alt - 1 : yabai -m space --focus 1
+alt - 2 : yabai -m space --focus 2
+alt - 3 : yabai -m space --focus 3
+alt - 4 : yabai -m space --focus 4
+alt - 5 : yabai -m space --focus 5
+alt - 6 : yabai -m space --focus 6
+alt - 7 : yabai -m space --focus 7
+alt - 8 : yabai -m space --focus 8
+alt - 9 : yabai -m space --focus 9
+alt - 0 : yabai -m space --focus 10
+
+shift + alt - 1 : yabai -m window --space 1 && echo 'r' | nc 127.0.0.1 1337
+shift + alt - 2 : yabai -m window --space 2 && echo 'r' | nc 127.0.0.1 1337
+shift + alt - 3 : yabai -m window --space 3 && echo 'r' | nc 127.0.0.1 1337
+shift + alt - 4 : yabai -m window --space 4 && echo 'r' | nc 127.0.0.1 1337
+shift + alt - 5 : yabai -m window --space 5 && echo 'r' | nc 127.0.0.1 1337
+shift + alt - 6 : yabai -m window --space 6 && echo 'r' | nc 127.0.0.1 1337
+shift + alt - 7 : yabai -m window --space 7 && echo 'r' | nc 127.0.0.1 1337
+shift + alt - 8 : yabai -m window --space 8 && echo 'r' | nc 127.0.0.1 1337
+shift + alt - 9 : yabai -m window --space 9 && echo 'r' | nc 127.0.0.1 1337
+shift + alt - 0 : yabai -m window --space 10 && echo 'r' | nc 127.0.0.1 1337
+
+ctrl + alt - p : yabai -m window --toggle sticky --toggle topmost --toggle pip
+
+shift + alt - x : yabai -m window --toggle float --toggle topmost
+
+cmd + shift - space : yabai -m query --windows | jq -r '.[] | "[\(.app)] \(.title) - \(.id)"' | choose | awk '{ print $NF }' | xargs -I{} yabai -m window --focus {}
+
+alt + shift - n : yabai -m window --focus stack.next
+alt + shift - p : yabai -m window --focus stack.prev
+
+fn - t : kitty -1 --title "ephemeral-$(uuidgen)" --directory "$HOME"
+
+alt - a : yabai -m window --insert west
+alt - s : yabai -m window --insert south
+alt - w : yabai -m window --insert north
+alt - d : yabai -m window --insert east
+alt - q : yabai -m window --insert stack
+shift + alt - a : yabai -m window --stack west
+shift + alt - s : yabai -m window --stack south
+shift + alt - w : yabai -m window --stack north
+shift + alt - d : yabai -m window --stack east
+alt - tab : yabai -m window --focus recent
+
+# logic 2010
+ctrl + shift - r : cliclick kd:shift kp:tab ku:shift kd:ctrl t:a ku:ctrl kp:delete kp:tab
