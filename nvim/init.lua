@@ -374,7 +374,7 @@ require("lazy").setup({
 
 {
     'akinsho/toggleterm.nvim',
-    tag = "*", -- Optional: Use '*' to match any tag version
+    version = "*", -- Optional: Use '*' to match any tag version
     config = function()
         require('toggleterm').setup({
             size = 20,
