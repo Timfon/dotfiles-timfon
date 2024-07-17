@@ -293,7 +293,7 @@ require("lazy").setup({
 	"https://github.com/tpope/vim-fugitive",
 	{
 		"NeogitOrg/neogit",
-		branch = "nightly",
+		branch = "master",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
@@ -402,15 +402,15 @@ require("lazy").setup({
         -- Set up mappings for multiple terminals
         vim.api.nvim_set_keymap('t', '`', '<C-\\><C-n>', { noremap = true, silent = true })
         
-        vim.api.nvim_set_keymap('n', '<C-t>1', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<C-t>2', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<C-t>3', '<Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<C-t>4', '<Cmd>4ToggleTerm<CR>', { noremap = true, silent = true })
-        
-        vim.api.nvim_set_keymap('t', '<C-t>1', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('t', '<C-t>2', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('t', '<C-t>3', '<Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('t', '<C-t>4', '<Cmd>4ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('n', '<C-1>', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('n', '<C-2>', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('n', '<C-3>', '<Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('n', '<C-4>', '<Cmd>4ToggleTerm<CR>', { noremap = true, silent = true })
+                                          
+        vim.api.nvim_set_keymap('t', '<C-1>', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('t', '<C-2>', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('t', '<C-3>', '<Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('t', '<C-4>', '<Cmd>4ToggleTerm<CR>', { noremap = true, silent = true })
 
 
         vim.api.nvim_set_keymap('i', '<C-t>1', '<Esc><Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
@@ -913,20 +913,20 @@ require("lazy").setup({
 	--   cmd = "GutentagsUpdate"
 	-- },
 	{ "folke/neodev.nvim", opts = {} },
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-		end,
-		opts = {
-			-- NOTWORKING
-			triggers_nowait = {
-				"<leader>",
-			},
-		},
-	},
+	--{
+	--	"folke/which-key.nvim",
+	--	event = "VeryLazy",
+	--	init = function()
+	--		vim.o.timeout = true
+	--		vim.o.timeoutlen = 300
+	--	end,
+	--	opts = {
+	--		-- NOTWORKING
+	--		triggers_nowait = {
+	--			"<leader>",
+	--		},
+	--	},
+	--},
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
