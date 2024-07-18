@@ -180,6 +180,9 @@ require("lazy").setup({
       { ",v", "<cmd>VenvSelect<cr>" },
     },
 },
+{
+    "williamboman/mason.nvim"
+},
 
 {
 	"goolord/alpha-nvim",
