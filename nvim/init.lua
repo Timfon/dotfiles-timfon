@@ -108,6 +108,29 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, bufopts)
 	end,
 })
+--Be able to expand large screen size = 30, and automatically switch focus to the terminal window
+local function check_file_size_and_open_with_less()
+    local file = vim.fn.expand('%:p')
+    if vim.fn.getfsize(file) > 512 * 1024 then
+        -- Open the file with less in a new terminal
+        vim.cmd('enew')  -- Open a new empty buffer
+        vim.cmd('ToggleTerm size=100')  -- Open a new terminal window
+        vim.cmd('TermExec cmd="less ' .. file .. '"')  -- Open file with less in toggleterm
+        
+        -- Use a timer to ensure the terminal is ready
+        vim.defer_fn(function()
+            vim.cmd('wincmd j')  -- Move to the window below
+            vim.cmd('startinsert')  -- Start terminal mode
+        end, 100)  -- Wait 100ms before executing
+    end
+end
+
+vim.api.nvim_create_augroup('BigFileOpenWithLess', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufReadPre', 'FileReadPre' }, {
+    group = 'BigFileOpenWithLess',
+    pattern = '*',
+    callback = check_file_size_and_open_with_less,
+})
 
 require("lazy").setup({
 	{
@@ -183,7 +206,9 @@ require("lazy").setup({
 {
     "williamboman/mason.nvim"
 },
-
+{
+  "LunarVim/bigfile.nvim",
+},
 {
 	"goolord/alpha-nvim",
 	event = "VimEnter",
@@ -343,6 +368,7 @@ require("lazy").setup({
 				},
 				filetype = "koka", -- if filetype does not match the parser name
 			}
+      vim.keymap.set('n', "<C-e>", ':NvimTreeOpen<CR>')
 		end,
 	},
 	{ "JoosepAlviste/nvim-ts-context-commentstring" },
@@ -998,20 +1024,20 @@ require("lazy").setup({
 	--   cmd = "GutentagsUpdate"
 	-- },
 	{ "folke/neodev.nvim", opts = {} },
-	--{
-	--	"folke/which-key.nvim",
-	--	event = "VeryLazy",
-	--	init = function()
-	--		vim.o.timeout = true
-	--		vim.o.timeoutlen = 300
-	--	end,
-	--	opts = {
-	--		-- NOTWORKING
-	--		triggers_nowait = {
-	--			"<leader>",
-	--		},
-	--	},
-	--},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+		opts = {
+			-- NOTWORKING
+			triggers_nowait = {
+				"<leader>",
+			},
+		},
+	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
