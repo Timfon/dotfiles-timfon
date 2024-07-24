@@ -206,6 +206,10 @@ require("lazy").setup({
 {
     "williamboman/mason.nvim"
 },
+
+{ 'echasnovski/mini.nvim', version = '*' },
+
+{ 'echasnovski/mini.icons', version = false },
 {
   "LunarVim/bigfile.nvim",
 },
@@ -1031,12 +1035,12 @@ require("lazy").setup({
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 		end,
-		opts = {
-			-- NOTWORKING
-			triggers_nowait = {
-				"<leader>",
-			},
-		},
+	--	opts = {
+	--		-- NOTWORKING
+	--		triggers_nowait = {
+	--			"<leader>",
+	--		},
+	--	},
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
