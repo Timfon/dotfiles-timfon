@@ -227,43 +227,30 @@ require("lazy").setup({
 		local version = " v" .. v.major .. "." .. v.minor .. "." .. v.patch
 
 		-- Set header
-		dashboard.section.header.val = { "", 
-  "                               ~5J:                                         ", 
-  "                   .....        .5@&J:                                      ", 
-  "                 .:!YB&@&&#P7:    G@@@B:   J?                               ", 
-  "                      .?@@@@@B~   Y@@@@@7  ^@B                              ", 
-  "              .:~~~~^   :@@@7    :@@@@BGY  ^@@#                             ", 
-  "          :?B@@@@@@@&    G@@&?!?G@@@@?    .&@@@Y                            ", 
-  "         ^7?!7?5B&@@@5!!5@@@@@@@@@@@@#~::7&@@@@&  7                         ", 
-  "            .!^   ?@@@@@@@@@@@@@@@@@@@@@@@@@GYPY ^@.                        ", 
-  "         .5&@@#...J@@@@@@@#57~^^!JB@@@@@@@@Y    !@@.                        ", 
-  "        5@@&&&@@@@@@@@@B!.         .J@@@@@@@PJ5&@@&                         ", 
-  "      .BB~.   :&@@@@@#:   :?PGBG?.   :&@@@@@@@@@@@7 :!                      ", 
-  "      :: .P~..^&@@@@G   :B@@@@@@@@^   ~@@@@@@@:  . !@^                      ", 
-  "        !@@@@@@@@@@&   .@@@@P77J&@5   .@@@@@@@Y~~?#@G                       ", 
-  "       :@&J~~?&@@@@J   ?@@@J    7B.   5@@@@@@@@@@@@&.                       ", 
-  "       YY     J@@@@5   7@@@G        :G@@@@@@@@@@@@&.                        ", 
-  "       .  BGG&@@@@@@.   #@@@@GJ!!!Y#@@@@@@@@@@@@@G                          ", 
-  "         :@@&J!J&@@@&.   5@@@@@@@@@@@@@@@@@@@@@&!                           ", 
-  "         :@B    :@@@@&:   .Y&@@@@@@@@@@@@@@@@&J                             ", 
-  "          B. 5GG@@@@@@@Y.    :?B&@@@@@@@@@@#7                               ", 
-  "          .  Y@@P~^^?#@@@P^      :~JG#&@@P^                                 ", 
-  "              5#      P@@@@&J:         ..                                   ", 
-  "            .  .      Y@@@@@@@&B5~                                          ", 
-  "            :77^:::^7#@@@@@@@@@&5:                                          ", 
-  "              ^?PB&@@@@@@@&B5!.                                             ", 
+		dashboard.section.header.val = {
+  "", 
+  "                          !5?.                         ", 
+  "               .^!!!^:.    .#@B!    .                  ", 
+  "               ..~Y&@@@&P.  ^@@@&^  PP                 ", 
+  "             ....   J@@#:   Y@@@&B. J@B                ", 
+  "        .!P&@@@@@7   &@&!~7B@@@~   .&@@5               ", 
+  "       .~!~!?5#@@&J?B@@@@@@@@@@G!~J@@@@& :^            ", 
+  "         :?G.  ?@@@@@@@@&&&@@@@@@@@@G~~^ #P            ", 
+  "       7&@@@#YP&@@@@#?:    .^Y&@@@@@J..~&@Y            ", 
+  "     .G#?^:~#@@@@@P:  .~77~.  .P@@@@@@@@@@: ^                New file           n    ", 
+  "     :: 7~..Y@@@@7  :B@@@@@@7   #@@@@@Y.::.B7           󰮗     Find file          f     ", 
+  "       #@@@@@@@@Y  .@@@G!~J@#   G@@@@@B77P@&                 File Explorer      e       ", 
+  "      P&~..^@@@@^  7@@&    ?.  ~@@@@@@@@@@@.                 Recent             r       ", 
+  "      7 :^:?@@@@J  :@@@P^.  .~G@@@@@@@@@@&.                  Configuration      c        ", 
+  "        #@@BG&@@@^  ~&@@@@@@@@@@@@@@@@@@5               󱘞     Ripgrep            R     ", 
+  "        &&.  .@@@@!   7&@@@@@@@@@@@@@@G:                󰗼     Quit               q      ", 
+  "        ?^ BB&@@@@@G:   :7G&@@@@@@@@5:                 ", 
+  "           5@5...!&@@B!.    .^7YBB7.                   ", 
+  "            !.    :@@@@@G?^.                           ", 
+  "          :^.....~#@@@@@@@@Y.                          ", 
+  "           :7YG#@@@@@@&GJ^.                            ", 
   ""
 }
-
-		dashboard.section.buttons.val = {
-		   dashboard.button("n", "   New file", ":ene <BAR> startinsert <CR>"),
-			dashboard.button("f", "󰮗   Find file", ":cd $HOME | Telescope find_files<CR>"),
-			dashboard.button("e", "   File Explorer", ":cd $HOME | Neotree<CR>"),
-		 	dashboard.button("r", "   Recent", ":Telescope oldfiles<CR>"),
-			dashboard.button("c", "   Configuration", ":e ~/.config/nvim/lua/user/config.lua<CR>"),
-			dashboard.button("R", "󱘞   Ripgrep", ":Telescope live_grep<CR>"),
-			dashboard.button("q", "󰗼   Quit", ":qa<CR>"),
-		}
 -- only for footer
 		function centerText(text, width)
 			local totalPadding = width - #text
@@ -274,7 +261,6 @@ require("lazy").setup({
 
 		dashboard.section.footer.val = {
 			centerText("glhf", 50),
-			" ",
 			-- centerText("NvimOnMy_Way❤️", 50),
 			-- " ",
 			centerText(date, 50),
@@ -282,6 +268,22 @@ require("lazy").setup({
 			centerText(version, 50),
 		}
 
+
+	dashboard.section.buttons.val = {}
+
+-- Set up keymaps for the functionality
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "alpha",
+  callback = function()
+    vim.keymap.set("n", "n", ":ene <BAR> startinsert <CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "f", ":cd $HOME | Telescope find_files<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "e", ":cd $HOME | Neotree<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "r", ":Telescope oldfiles<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "c", ":e ~/.config/nvim/lua/user/config.lua<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "R", ":Telescope live_grep<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "q", ":qa<CR>", { buffer = true, silent = true })
+  end,
+})
 		-- Send config to alpha
 		alpha.setup(dashboard.opts)
 
