@@ -132,6 +132,13 @@ vim.api.nvim_create_autocmd({ 'BufReadPre', 'FileReadPre' }, {
     callback = check_file_size_and_open_with_less,
 })
 
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = "*.json",
+  callback = function()
+    vim.api.nvim_command("%!jq .")
+  end
+})
+
 require("lazy").setup({
 	{
 		"https://github.com/rose-pine/neovim",
@@ -234,19 +241,19 @@ require("lazy").setup({
   "               ..~Y&@@@&P.  ^@@@&^  PP                 ", 
   "             ....   J@@#:   Y@@@&B. J@B                ", 
   "        .!P&@@@@@7   &@&!~7B@@@~   .&@@5               ", 
-  "       .~!~!?5#@@&J?B@@@@@@@@@@G!~J@@@@& :^            ", 
+  "       .~!~!?5#@@&J?B@@@@@@@@@@G!~J@@@@& :^                  New file         n ", 
   "         :?G.  ?@@@@@@@@&&&@@@@@@@@@G~~^ #P            ", 
-  "       7&@@@#YP&@@@@#?:    .^Y&@@@@@J..~&@Y            ", 
-  "     .G#?^:~#@@@@@P:  .~77~.  .P@@@@@@@@@@: ^                New file         n    ", 
-  "     :: 7~..Y@@@@7  :B@@@@@@7   #@@@@@Y.::.B7           󰮗     Find file        f     ", 
-  "       #@@@@@@@@Y  .@@@G!~J@#   G@@@@@B77P@&                 File Explorer    e       ", 
+  "       7&@@@#YP&@@@@#?:    .^Y&@@@@@J..~&@Y             󰮗     Find file        f ", 
+  "     .G#?^:~#@@@@@P:  .~77~.  .P@@@@@@@@@@: ^            ", 
+  "     :: 7~..Y@@@@7  :B@@@@@@7   #@@@@@Y.::.B7                File Explorer    e     ", 
+  "       #@@@@@@@@Y  .@@@G!~J@#   G@@@@@B77P@&           ", 
   "      P&~..^@@@@^  7@@&    ?.  ~@@@@@@@@@@@.                 Recent           r       ", 
-  "      7 :^:?@@@@J  :@@@P^.  .~G@@@@@@@@@@&.                  Configuration    c        ", 
-  "        #@@BG&@@@^  ~&@@@@@@@@@@@@@@@@@@5               󱘞     Ripgrep          R     ", 
-  "        &&.  .@@@@!   7&@@@@@@@@@@@@@@G:                󰗼     Quit             q      ", 
-  "        ?^ BB&@@@@@G:   :7G&@@@@@@@@5:                 ", 
+  "      7 :^:?@@@@J  :@@@P^.  .~G@@@@@@@@@@&.            ", 
+  "        #@@BG&@@@^  ~&@@@@@@@@@@@@@@@@@@5                    Configuration    c        ", 
+  "        &&.  .@@@@!   7&@@@@@@@@@@@@@@G:             ", 
+  "        ?^ BB&@@@@@G:   :7G&@@@@@@@@5:                  󱘞     Ripgrep          R  ", 
   "           5@5...!&@@B!.    .^7YBB7.                   ", 
-  "            !.    :@@@@@G?^.                           ", 
+  "            !.    :@@@@@G?^.                            󰗼     Quit             q    ", 
   "          :^.....~#@@@@@@@@Y.                          ", 
   "           :7YG#@@@@@@&GJ^.                            ", 
   ""
@@ -277,9 +284,9 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.keymap.set("n", "n", ":ene <BAR> startinsert <CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "f", ":cd $HOME | Telescope find_files<CR>", { buffer = true, silent = true })
-    vim.keymap.set("n", "e", ":cd $HOME | Neotree<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "e", ":cd $HOME | :NvimTreeOpen<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "r", ":Telescope oldfiles<CR>", { buffer = true, silent = true })
-    vim.keymap.set("n", "c", ":e ~/.config/nvim/lua/user/config.lua<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "c", ":e ~/.config/nvim/init.lua<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "R", ":Telescope live_grep<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "q", ":qa<CR>", { buffer = true, silent = true })
   end,
