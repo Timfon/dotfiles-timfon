@@ -60,27 +60,27 @@ alt - 8 : yabai -m space --focus 8
 alt - 9 : yabai -m space --focus 9
 alt - 0 : yabai -m space --focus 10
 
-shift + alt - 1 : yabai -m window --space 1 && echo 'r' | nc 127.0.0.1 1337
-shift + alt - 2 : yabai -m window --space 2 && echo 'r' | nc 127.0.0.1 1337
-shift + alt - 3 : yabai -m window --space 3 && echo 'r' | nc 127.0.0.1 1337
-shift + alt - 4 : yabai -m window --space 4 && echo 'r' | nc 127.0.0.1 1337
-shift + alt - 5 : yabai -m window --space 5 && echo 'r' | nc 127.0.0.1 1337
-shift + alt - 6 : yabai -m window --space 6 && echo 'r' | nc 127.0.0.1 1337
-shift + alt - 7 : yabai -m window --space 7 && echo 'r' | nc 127.0.0.1 1337
-shift + alt - 8 : yabai -m window --space 8 && echo 'r' | nc 127.0.0.1 1337
-shift + alt - 9 : yabai -m window --space 9 && echo 'r' | nc 127.0.0.1 1337
-shift + alt - 0 : yabai -m window --space 10 && echo 'r' | nc 127.0.0.1 1337
+ctrl + shift - 1 : yabai -m window --space 1 && echo 'r' | nc 127.0.0.1 1337
+ctrl + shift - 2 : yabai -m window --space 2 && echo 'r' | nc 127.0.0.1 1337
+ctrl + shift - 3 : yabai -m window --space 3 && echo 'r' | nc 127.0.0.1 1337
+ctrl + shift - 4 : yabai -m window --space 4 && echo 'r' | nc 127.0.0.1 1337
+ctrl + shift - 5 : yabai -m window --space 5 && echo 'r' | nc 127.0.0.1 1337
+ctrl + shift - 6 : yabai -m window --space 6 && echo 'r' | nc 127.0.0.1 1337
+ctrl + shift - 7 : yabai -m window --space 7 && echo 'r' | nc 127.0.0.1 1337
+ctrl + shift - 8 : yabai -m window --space 8 && echo 'r' | nc 127.0.0.1 1337
+ctrl + shift - 9 : yabai -m window --space 9 && echo 'r' | nc 127.0.0.1 1337
+ctrl + shift - 0 : yabai -m window --space 10 && echo 'r' | nc 127.0.0.1 1337
 
-ctrl + shift - 1 : yabai -m window --space 1 && yabai -m space --focus 1
-ctrl + shift - 2 : yabai -m window --space 2 && yabai -m space --focus 2
-ctrl + shift - 3 : yabai -m window --space 3 && yabai -m space --focus 3
-ctrl + shift - 4 : yabai -m window --space 4 && yabai -m space --focus 4
-ctrl + shift - 5 : yabai -m window --space 5 && yabai -m space --focus 5
-ctrl + shift - 6 : yabai -m window --space 6 && yabai -m space --focus 6
-ctrl + shift - 7 : yabai -m window --space 7 && yabai -m space --focus 7
-ctrl + shift - 8 : yabai -m window --space 8 && yabai -m space --focus 8
-ctrl + shift - 9 : yabai -m window --space 9 && yabai -m space --focus 9
-ctrl + shift - 0 : yabai -m window --space 10 && yabai -m space --focus 10
+shift + alt - 1 : yabai -m window --space 1 && yabai -m space --focus 1
+shift + alt - 2 : yabai -m window --space 2 && yabai -m space --focus 2
+shift + alt - 3 : yabai -m window --space 3 && yabai -m space --focus 3
+shift + alt - 4 : yabai -m window --space 4 && yabai -m space --focus 4
+shift + alt - 5 : yabai -m window --space 5 && yabai -m space --focus 5
+shift + alt - 6 : yabai -m window --space 6 && yabai -m space --focus 6
+shift + alt - 7 : yabai -m window --space 7 && yabai -m space --focus 7
+shift + alt - 8 : yabai -m window --space 8 && yabai -m space --focus 8
+shift + alt - 9 : yabai -m window --space 9 && yabai -m space --focus 9
+shift + alt - 0 : yabai -m window --space 10 && yabai -m space --focus 10
 
 rcmd - i : yabai -m space --toggle padding; \
 	 yabai -m space --toggle gap; \

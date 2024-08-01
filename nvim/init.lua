@@ -16,15 +16,15 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
 vim.g.python3_host_prog = "~/Lang/GlobalVenv/bin/python3.9"
+
 vim.opt.termguicolors = true
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 --
 -- local severe_ns = vim.api.nvim_create_namespace("severe-diagnostics")
---
+
 -- local function max_diagnostic(callback)
 -- 	return function(_, bufnr, diagnostics, opts)
 -- 		local line_to_diagnostic = {}
@@ -77,6 +77,7 @@ vim.filetype.add({
 		["yabairc"] = "sh",
 	},
 })
+
 
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -537,6 +538,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.api.nvim_set_keymap('t', '<C-4>', '<Cmd>4ToggleTerm<CR>', { noremap = true, silent = true })
 
 
+
         vim.api.nvim_set_keymap('i', '<C-t>1', '<Esc><Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
         vim.api.nvim_set_keymap('i', '<C-t>2', '<Esc><Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
         vim.api.nvim_set_keymap('i', '<C-t>3', '<Esc><Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
@@ -971,6 +973,53 @@ vim.api.nvim_create_autocmd("FileType", {
 		end,
 	},
 	{ "https://github.com/github/copilot.vim" },
+{
+    "CopilotC-Nvim/CopilotChat.nvim",
+    opts = {
+      show_help = "yes", -- Show help text for CopilotChatInPlace, default: yes
+      debug = false, -- Enable or disable debug mode, the log file will be in ~/.local/state/nvim/CopilotChat.nvim.log
+      disable_extra_info = 'no', -- Disable extra information (e.g: system prompt) in the response.
+      language = "English" -- Copilot answer language settings when using default prompts. Default language is English.
+      -- proxy = "socks5://127.0.0.1:3000", -- Proxies requests via https or socks.
+      -- temperature = 0.1,
+    },
+    build = function()
+      vim.notify("Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim.")
+    end,
+    event = "VeryLazy",
+    keys = {
+      { "<leader>ccb", ":CopilotChatBuffer ", desc = "CopilotChat - Chat with current buffer" },
+      { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+      {
+        "<leader>ccT",
+        "<cmd>CopilotChatVsplitToggle<cr>",
+        desc = "CopilotChat - Toggle Vsplit", -- Toggle vertical split
+      },
+      {
+        "<leader>ccv",
+        ":CopilotChatVisual ",
+        mode = "x",
+        desc = "CopilotChat - Open in vertical split",
+      },
+      {
+        "<leader>ccx",
+        ":CopilotChatInPlace<cr>",
+        mode = "x",
+        desc = "CopilotChat - Run in-place code",
+      },
+      {
+        "<leader>ccf",
+        "<cmd>CopilotChatFixDiagnostic<cr>", -- Get a fix for the diagnostic message under the cursor.
+        desc = "CopilotChat - Fix diagnostic",
+      },
+      {
+        "<leader>ccr",
+        "<cmd>CopilotChatReset<cr>", -- Reset chat history and clear buffer.
+        desc = "CopilotChat - Reset chat history and clear buffer",
+      }
+    },
+  },
 	{
 		"https://github.com/whonore/Coqtail",
 		lazy = false,
