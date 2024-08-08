@@ -79,19 +79,34 @@ vim.filetype.add({
 	},
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = "*.*",
-  callback = function()
-    local bufname = vim.fn.bufname()
-    local buftype = vim.bo.buftype
-    -- Only execute `lcd %:h` if the buffer has a valid file name and is not a terminal buffer
-    if bufname ~= "" and buftype == "" then
-      vim.cmd("lcd " .. vim.fn.expand("%:h"))
+
+
+-- Function to change the local directory to the current buffer's directory
+local function change_local_directory()
+  local bufname = vim.fn.bufname()
+  local buftype = vim.bo.buftype
+
+  -- Only execute if the buffer has a valid file name and is not a terminal buffer
+  if bufname ~= "" and buftype == "" then
+    local file_dir = vim.fn.expand('%:h')  -- Get the directory of the current file
+    vim.cmd("lcd " .. file_dir)
+    local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+    
+
+    if git_root and git_root ~= "" and vim.fn.isdirectory(git_root) == 1 then
+      vim.cmd("lcd " .. git_root)
     end
   end
+end
+
+-- Create an autocommand that runs the function on BufEnter
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*.*",
+  callback = change_local_directory
 })
 
-
+-- Map the function to <C-`>
+vim.api.nvim_set_keymap('n', '<C-`>', [[:lua change_local_directory()<CR>]], { noremap = true, silent = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -532,6 +547,7 @@ vim.api.nvim_create_autocmd("FileType", {
             direction = "horizontal",
             close_on_exit = true,
             shell = vim.o.shell,
+            dir = "git_dir",
             float_opts = {
                 border = "curved",
                 winblend = 0,
@@ -544,6 +560,7 @@ vim.api.nvim_create_autocmd("FileType", {
         --
         -- Set up mappings for multiple terminals
         vim.api.nvim_set_keymap('t', '`', '<C-\\><C-n>', { noremap = true, silent = true })
+
         
         vim.api.nvim_set_keymap('n', '<C-1>', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
         vim.api.nvim_set_keymap('n', '<C-2>', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
