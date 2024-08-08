@@ -4,6 +4,8 @@ vim.g.firenvim_config = {
   }
 }
 
+vim.g.python3_host_prog = '/Users/timothyfong/.pyenv/shims/python'
+-- vim.g.python3_host_prog = "~/Lang/GlobalVenv/bin/python3.9"
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -16,7 +18,6 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-vim.g.python3_host_prog = "~/Lang/GlobalVenv/bin/python3.9"
 
 vim.opt.termguicolors = true
 
@@ -24,7 +25,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 --
 -- local severe_ns = vim.api.nvim_create_namespace("severe-diagnostics")
-
+--
 -- local function max_diagnostic(callback)
 -- 	return function(_, bufnr, diagnostics, opts)
 -- 		local line_to_diagnostic = {}
@@ -76,6 +77,18 @@ vim.filetype.add({
 	filename = {
 		["yabairc"] = "sh",
 	},
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*.*",
+  callback = function()
+    local bufname = vim.fn.bufname()
+    local buftype = vim.bo.buftype
+    -- Only execute `lcd %:h` if the buffer has a valid file name and is not a terminal buffer
+    if bufname ~= "" and buftype == "" then
+      vim.cmd("lcd " .. vim.fn.expand("%:h"))
+    end
+  end
 })
 
 
@@ -139,7 +152,6 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
     vim.api.nvim_command("%!jq .")
   end
 })
-
 require("lazy").setup({
 	{
 		"https://github.com/rose-pine/neovim",
@@ -212,7 +224,10 @@ require("lazy").setup({
     },
 },
 {
-    "williamboman/mason.nvim"
+    "williamboman/mason.nvim",
+    config = function()
+        require("mason").setup()
+    end
 },
 
 { 'echasnovski/mini.nvim', version = '*' },
@@ -220,6 +235,9 @@ require("lazy").setup({
 { 'echasnovski/mini.icons', version = false },
 {
   "LunarVim/bigfile.nvim",
+},
+{
+    "williamboman/mason.nvim"
 },
 {
 	"goolord/alpha-nvim",
@@ -262,7 +280,7 @@ require("lazy").setup({
 -- only for footer
 		function centerText(text, width)
 			local totalPadding = width - #text
-			local leftPadding = math.floor(totalPadding / 3)
+			local leftPadding = math.floor(totalPadding / 2)
 			local rightPadding = totalPadding - leftPadding
 			return string.rep(" ", leftPadding) .. text .. string.rep(" ", rightPadding)
 		end
