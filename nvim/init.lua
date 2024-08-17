@@ -244,7 +244,6 @@ require("lazy").setup({
         require("mason").setup()
     end
 },
-
 { 'echasnovski/mini.nvim', version = '*' },
 
 { 'echasnovski/mini.icons', version = false },
@@ -535,7 +534,7 @@ vim.api.nvim_create_autocmd("FileType", {
     version = "*", -- Optional: Use '*' to match any tag version
     config = function()
         require('toggleterm').setup({
-            size = 20,
+            size = 10,
             open_mapping = [[<C-`>]],
             hide_numbers = true,
             shade_filetypes = {},
