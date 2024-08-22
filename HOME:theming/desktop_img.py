@@ -15,7 +15,7 @@ def set_mac_wallpaper(img):
 
     # Put the image path in the database
     sql = "insert into data values(\"%s\"); " % img
-    subprocess.call(["sqlite3", db_path, sql])
+    subprocess.call(["sqlite3", db_path, sql], stdout=subprocess.DEVNULL)
 
     # Get the index of the new entry
     sql = "select max(rowid) from data;"
@@ -36,7 +36,7 @@ def set_mac_wallpaper(img):
             sql += 'insert into preferences (key, data_id, picture_id) '
             sql += 'values(1, %s, %s); ' % (new_entry, pic)
 
-    subprocess.call(["sqlite3", db_path, sql])
+    subprocess.call(["sqlite3", db_path, sql], stdout=subprocess.DEVNULL)
 
     # Kill the dock to fix issues with cached wallpapers.
     # macOS caches wallpapers and if a wallpaper is set that shares
@@ -48,6 +48,6 @@ def set_mac_wallpaper(img):
     subprocess.call(["killall", "Dock"])
 
 if sys.argv[1] == 'light':
-    set_mac_wallpaper('/Users/ml/wallpapers/cropped-3840-2160-paper_airplane.png')
+    set_mac_wallpaper('/Users/timothyfong/wallpapers/ultrakill.png')
 else:
-    set_mac_wallpaper('/Users/ml/wallpapers/cropped-3840-2160-paper_airplane.png')
+    set_mac_wallpaper('/Users/timothyfong/wallpapers/quirrel.jpg')
