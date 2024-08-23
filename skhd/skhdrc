@@ -93,8 +93,8 @@ shift + alt - x : yabai -m window --toggle float --toggle topmost
 
 cmd + shift - space : yabai -m query --windows | jq -r '.[] | "[\(.app)] \(.title) - \(.id)"' | choose | awk '{ print $NF }' | xargs -I{} yabai -m window --focus {}
 
-alt + shift - n : yabai -m window --focus stack.next
-alt + shift - p : yabai -m window --focus stack.prev
+alt - n : yabai -m window --focus stack.next
+alt - p : yabai -m window --focus stack.prev
 
 fn - t : kitty -1 --title "ephemeral-$(uuidgen)" --directory "$HOME"
 
