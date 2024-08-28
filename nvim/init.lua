@@ -247,7 +247,6 @@ require("lazy").setup({
     end
 },
 { 'echasnovski/mini.nvim', version = '*' },
-
 { 'echasnovski/mini.icons', version = false },
 {
   "LunarVim/bigfile.nvim",
@@ -334,7 +333,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 }, 
 
-
+{
+        'numirias/semshi',
+        run = ':UpdateRemotePlugins',  -- This step is necessary to register semshi as a remote plugin
+        ft = 'python'  -- Optional: Load the plugin only when editing Python files
+    },
 
 
 {
@@ -390,6 +393,7 @@ vim.api.nvim_create_autocmd("FileType", {
         'regex',
       },
 				highlight = { enable = true },
+        indent = { enable = false },
 				textobjects = {
 					select = {
 						enable = true,
@@ -1136,40 +1140,40 @@ vim.api.nvim_create_autocmd("FileType", {
 	--		},
 	--	},
 	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		-- NOTE: VeryLazy seems to load ibl after colorscheme,
-		-- so IBLIndent and IBLScope highlights are applied
-		event = "VeryLazy",
-		config = function()
-			require("ibl").setup({
-				indent = {
-					char = "│",
-					smart_indent_cap = true,
-				},
-				scope = {
-					show_start = false,
-					show_end = false,
-				},
-			})
-			-- HACK: hide indent lines in visual mode
-			-- ref: https://github.com/lukas-reineke/indent-blankline.nvim/issues/132#issuecomment-1781195298
-			local ibl_visual_hide = vim.api.nvim_create_augroup("ibl_visual_hide", { clear = true })
-			vim.api.nvim_create_autocmd("ModeChanged", {
-				group = ibl_visual_hide,
-				pattern = "[vV\x16]*:*", -- visual → anything
-				command = "IBLEnable",
-				desc = "Enable IBL in non-Visual mode",
-			})
-			vim.api.nvim_create_autocmd("ModeChanged", {
-				group = ibl_visual_hide,
-				pattern = "*:[vV\x16]*", -- anything → visual
-				command = "IBLDisable",
-				desc = "Disable IBL in Visual mode",
-			})
-		end,
-	},
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	main = "ibl",
+	-- 	-- NOTE: VeryLazy seems to load ibl after colorscheme,
+	-- 	-- so IBLIndent and IBLScope highlights are applied
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		require("ibl").setup({
+	-- 			indent = {
+	-- 				char = "│",
+	-- 				smart_indent_cap = true,
+	-- 			},
+	-- 			scope = {
+	-- 				show_start = false,
+	-- 				show_end = false,
+	-- 			},
+	-- 		})
+	-- 		-- HACK: hide indent lines in visual mode
+	-- 		-- ref: https://github.com/lukas-reineke/indent-blankline.nvim/issues/132#issuecomment-1781195298
+	-- 		local ibl_visual_hide = vim.api.nvim_create_augroup("ibl_visual_hide", { clear = true })
+	-- 		vim.api.nvim_create_autocmd("ModeChanged", {
+	-- 			group = ibl_visual_hide,
+	-- 			pattern = "[vV\x16]*:*", -- visual → anything
+	-- 			command = "IBLEnable",
+	-- 			desc = "Enable IBL in non-Visual mode",
+	-- 		})
+	-- 		vim.api.nvim_create_autocmd("ModeChanged", {
+	-- 			group = ibl_visual_hide,
+	-- 			pattern = "*:[vV\x16]*", -- anything → visual
+	-- 			command = "IBLDisable",
+	-- 			desc = "Disable IBL in Visual mode",
+	-- 		})
+	-- 	end,
+	-- },
 	{ "https://github.com/folke/tokyonight.nvim" },
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	{
