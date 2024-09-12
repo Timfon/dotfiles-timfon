@@ -134,7 +134,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 		end, bufopts)
 		vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)
-		-- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+		vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 		vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, bufopts)
 	end,
@@ -255,6 +255,16 @@ require("lazy").setup({
     "williamboman/mason.nvim"
 },
 {
+   "amitds1997/remote-nvim.nvim",
+   version = "*", -- Pin to GitHub releases
+   dependencies = {
+       "nvim-lua/plenary.nvim", -- For standard functions
+       "MunifTanjim/nui.nvim", -- To build the plugin UI
+       "nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+   },
+   config = true,
+},
+{
 	"goolord/alpha-nvim",
 	event = "VimEnter",
 	dependencies = { "RchrdAriza/nvim-web-devicons" },
@@ -338,6 +348,7 @@ vim.api.nvim_create_autocmd("FileType", {
         run = ':UpdateRemotePlugins',  -- This step is necessary to register semshi as a remote plugin
         ft = 'python'  -- Optional: Load the plugin only when editing Python files
     },
+
 
 
 {
