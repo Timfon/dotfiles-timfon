@@ -247,6 +247,12 @@ require("lazy").setup({
     end
 },
 { 'echasnovski/mini.nvim', version = '*' },
+{ 'fatih/vim-go', version = "*"},
+{'tpope/vim-pathogen', version = "*"},
+{'junegunn/vim-plug', version = "*"},
+{'Shougo/neobundle.vim', version = "*"},
+{'gmarik/vundle', version = "*"},
+
 { 'echasnovski/mini.icons', version = false },
 {
   "LunarVim/bigfile.nvim",
