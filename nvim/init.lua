@@ -3,7 +3,7 @@ vim.g.firenvim_config = {
     ['.*'] = { takeover = 'never' }
   }
 }
-
+vim.opt.swapfile = false
 vim.g.python3_host_prog = '/Users/timothyfong/.pyenv/shims/python'
 -- vim.g.python3_host_prog = "~/Lang/GlobalVenv/bin/python3.9"
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -247,11 +247,12 @@ require("lazy").setup({
     end
 },
 { 'echasnovski/mini.nvim', version = '*' },
-{ 'fatih/vim-go', version = "*"},
-{'tpope/vim-pathogen', version = "*"},
-{'junegunn/vim-plug', version = "*"},
-{'Shougo/neobundle.vim', version = "*"},
-{'gmarik/vundle', version = "*"},
+{'jamestthompson3/nvim-remote-containers', version = '*'},
+-- { 'fatih/vim-go', version = "*"},
+-- {'tpope/vim-pathogen', version = "*"},
+-- {'junegunn/vim-plug', version = "*"},
+-- {'Shougo/neobundle.vim', version = "*"},
+-- {'gmarik/vundle', version = "*"},
 
 { 'echasnovski/mini.icons', version = false },
 {
@@ -335,7 +336,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "n", ":ene <BAR> startinsert <CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "f", ":cd $HOME | Telescope find_files<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "e", ":cd $HOME | :NvimTreeOpen<CR>", { buffer = true, silent = true })
-    vim.keymap.set("n", "r", ":Telescope oldfiles<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "r", ":Telescope frecency<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "c", ":e ~/.config/nvim/init.lua<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "R", ":Telescope live_grep<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "q", ":qa<CR>", { buffer = true, silent = true })
@@ -354,6 +355,16 @@ vim.api.nvim_create_autocmd("FileType", {
         run = ':UpdateRemotePlugins',  -- This step is necessary to register semshi as a remote plugin
         ft = 'python'  -- Optional: Load the plugin only when editing Python files
     },
+
+{
+	"Pocco81/auto-save.nvim",
+	config = function()
+		 require("auto-save").setup {
+			-- your config goes here
+			-- or just leave it empty :)
+		 }
+	end,
+},
 
 
 
@@ -469,6 +480,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		config = function()
 		end,
 	},
+
 	-- { 'https://github.com/IndianBoy42/iswap.nvim', branch = 'expand_key' },
 	"https://github.com/tpope/vim-fugitive",
 	{
@@ -1012,7 +1024,14 @@ vim.api.nvim_create_autocmd("FileType", {
 				},
 			})
 			require("lspconfig")["racket_langserver"].setup({})
-			require("lspconfig")["ocamllsp"].setup({})
+			require("lspconfig")["ocamllsp"].setup({settings = {
+    ocaml = {
+      format = {
+        enabled = true,
+        command = { "ocamlformat-rpc" }
+      }
+    }
+  }})
 			require("lspconfig")["clangd"].setup({})
 			require("lspconfig")["tsserver"].setup({})
 			require("lspconfig").tailwindcss.setup({})
