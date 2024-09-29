@@ -3,6 +3,20 @@ vim.g.firenvim_config = {
     ['.*'] = { takeover = 'never' }
   }
 }
+-- Get the binary path for opam
+local opambin = vim.fn.system("opam config var bin"):gsub("\n$", "")
+
+-- Configure neoformat for ocamlformat
+vim.g.neoformat_ocaml_ocamlformat = {
+    exe = opambin .. '/ocamlformat',
+    no_append = 1,
+    stdin = 1,
+    args = { '--disable-outside-detected-project', '--name', '"%:p"', '-' }
+}
+
+
+-- Enable ocamlformat as the default formatter for OCaml
+vim.g.neoformat_enabled_ocaml = { 'ocamlformat' }
 vim.opt.swapfile = false
 vim.g.python3_host_prog = '/Users/timothyfong/.pyenv/shims/python'
 -- vim.g.python3_host_prog = "~/Lang/GlobalVenv/bin/python3.9"
@@ -248,6 +262,7 @@ require("lazy").setup({
 },
 { 'echasnovski/mini.nvim', version = '*' },
 {'jamestthompson3/nvim-remote-containers', version = '*'},
+{'sbdchd/neoformat', version = '*'},
 -- { 'fatih/vim-go', version = "*"},
 -- {'tpope/vim-pathogen', version = "*"},
 -- {'junegunn/vim-plug', version = "*"},
@@ -336,7 +351,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "n", ":ene <BAR> startinsert <CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "f", ":cd $HOME | Telescope find_files<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "e", ":cd $HOME | :NvimTreeOpen<CR>", { buffer = true, silent = true })
-    vim.keymap.set("n", "r", ":Telescope frecency<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "r", "<Cmd>Recent<CR>", { silent = true })
     vim.keymap.set("n", "c", ":e ~/.config/nvim/init.lua<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "R", ":Telescope live_grep<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "q", ":qa<CR>", { buffer = true, silent = true })
@@ -365,6 +380,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		 }
 	end,
 },
+
 
 
 
@@ -596,10 +612,10 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.api.nvim_set_keymap('t', '`', '<C-\\><C-n>', { noremap = true, silent = true })
 
         
-        vim.api.nvim_set_keymap('n', '<C-1>', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<C-2>', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<C-3>', '<Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<C-4>', '<Cmd>4ToggleTerm<CR>', { noremap = true, silent = true })
+        -- vim.api.nvim_set_keymap('n', '<C-1>', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
+        -- vim.api.nvim_set_keymap('n', '<C-2>', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
+        -- vim.api.nvim_set_keymap('n', '<C-3>', '<Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
+        -- vim.api.nvim_set_keymap('n', '<C-4>', '<Cmd>4ToggleTerm<CR>', { noremap = true, silent = true })
                                           
         vim.api.nvim_set_keymap('t', '<C-1>', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
         vim.api.nvim_set_keymap('t', '<C-2>', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
