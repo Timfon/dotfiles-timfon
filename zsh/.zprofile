@@ -25,3 +25,4 @@ eval "$(pyenv init -)"
 # # go
 # export PATH="$HOME/go/bin:$PATH"
 export PATH="$(brew --prefix python)/libexec/bin:$PATH"
+eval $(opam env)
