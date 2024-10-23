@@ -384,29 +384,29 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 
-{
-
-		"https://github.com/sainnhe/everforest",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-				pattern = { "everforest" },
-				callback = function(_ev)
-					vim.cmd([[
-          hi def CoqtailChecked guibg=#425047
-          hi def CoqtailSent guibg=#343f44
-          hi def EphemeralError guibg=#eb6f92
-          hi def EphemeralWarn guibg=#f6c177
-          hi def EphemeralInfo guibg=#9ccfd8
-          hi def EphemeralHint guibg=#c4a7e7
-          ]])
-				end,
-			})
-			vim.g.everforest_background = "soft"
-			vim.g.everforest_better_performance = 1
-		end,
-	},
+-- {
+--
+-- 		"https://github.com/sainnhe/everforest",
+-- 		lazy = false,
+-- 		priority = 1000,
+-- 		config = function()
+-- 			vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+-- 				pattern = { "everforest" },
+-- 				callback = function(_ev)
+-- 					vim.cmd([[
+--           hi def CoqtailChecked guibg=#425047
+--           hi def CoqtailSent guibg=#343f44
+--           hi def EphemeralError guibg=#eb6f92
+--           hi def EphemeralWarn guibg=#f6c177
+--           hi def EphemeralInfo guibg=#9ccfd8
+--           hi def EphemeralHint guibg=#c4a7e7
+--           ]])
+-- 				end,
+-- 			})
+-- 			vim.g.everforest_background = "soft"
+-- 			vim.g.everforest_better_performance = 1
+-- 		end,
+-- 	},
 	"nvim-lua/plenary.nvim",
 	{
 		"https://github.com/nvim-treesitter/nvim-treesitter",
@@ -612,18 +612,16 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.api.nvim_set_keymap('t', '`', '<C-\\><C-n>', { noremap = true, silent = true })
 
         
-        -- vim.api.nvim_set_keymap('n', '<C-1>', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
-        -- vim.api.nvim_set_keymap('n', '<C-2>', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
-        -- vim.api.nvim_set_keymap('n', '<C-3>', '<Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
-        -- vim.api.nvim_set_keymap('n', '<C-4>', '<Cmd>4ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('n', '<C-1>', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('n', '<C-2>', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('n', '<C-3>', '<Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('n', '<C-4>', '<Cmd>4ToggleTerm<CR>', { noremap = true, silent = true })
                                           
         vim.api.nvim_set_keymap('t', '<C-1>', '<Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
         vim.api.nvim_set_keymap('t', '<C-2>', '<Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
         vim.api.nvim_set_keymap('t', '<C-3>', '<Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
+
         vim.api.nvim_set_keymap('t', '<C-4>', '<Cmd>4ToggleTerm<CR>', { noremap = true, silent = true })
-
-
-
         vim.api.nvim_set_keymap('i', '<C-t>1', '<Esc><Cmd>1ToggleTerm<CR>', { noremap = true, silent = true })
         vim.api.nvim_set_keymap('i', '<C-t>2', '<Esc><Cmd>2ToggleTerm<CR>', { noremap = true, silent = true })
         vim.api.nvim_set_keymap('i', '<C-t>3', '<Esc><Cmd>3ToggleTerm<CR>', { noremap = true, silent = true })
@@ -953,6 +951,18 @@ vim.api.nvim_create_autocmd("FileType", {
 			vim.g["conjure#mapping#prefix"] = "<Leader>"
 		end,
 	},
+{
+  "neanias/everforest-nvim",
+  version = false,
+  lazy = false,
+  priority = 1000, -- make sure to load this before all the other start plugins
+  -- Optional; default configuration will be used if setup isn't called.
+  config = function()
+    require("everforest").setup({
+      -- Your config here
+    })
+  end,
+},
 	{ "moll/vim-bbye" },
 	"rhysd/conflict-marker.vim",
 	{
