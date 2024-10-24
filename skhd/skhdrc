@@ -85,6 +85,8 @@ shift + alt - 0 : yabai -m window --space 10 && yabai -m space --focus 10
 rcmd - i : yabai -m space --toggle padding; \
 	 yabai -m space --toggle gap; \
 	 sketchybar --bar hidden=false; \
+   borders width=0 \
+
 
 ctrl + alt - p : yabai -m window --toggle sticky --toggle topmost --toggle pip
 
