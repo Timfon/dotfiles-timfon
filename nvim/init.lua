@@ -4,10 +4,10 @@ vim.g.firenvim_config = {
   }
 }
 local map = vim.keymap.set
-map("n", "<C-h>", "<C-W>h", { silent = true })
-map("n", "<C-j>", "<C-W>j", { silent = true })
-map("n", "<C-k>", "<C-W>k", { silent = true })
-map("n", "<C-l>", "<C-W>l", { silent = true })
+map("n", "<C-h>", "<C-W>h")
+map("n", "<C-j>", "<C-W>j")
+map("n", "<C-k>", "<C-W>k")
+map("n", "<C-l>", "<C-W>l")
 
 
 -- Get the binary path for opam
@@ -898,10 +898,17 @@ vim.api.nvim_create_autocmd("FileType", {
                 is_hidden_file = function(name, bufnr)
                     return vim.startswith(name, ".")
                 end,
+            },
+            -- Disable the keymaps explicitly in oil's config
+            keymaps = {
+                ["<C-l>"] = false,
+                ["<C-h>"] = false,
             }
         })
-    end
-},  "https://github.com/tpope/vim-characterize",
+    end,
+},
+
+"https://github.com/tpope/vim-characterize",
 	{
 		"https://github.com/junegunn/vim-easy-align",
 		config = function()
