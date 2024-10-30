@@ -3,6 +3,13 @@ vim.g.firenvim_config = {
     ['.*'] = { takeover = 'never' }
   }
 }
+local map = vim.keymap.set
+map("n", "<C-h>", "<C-W>h", { silent = true })
+map("n", "<C-j>", "<C-W>j", { silent = true })
+map("n", "<C-k>", "<C-W>k", { silent = true })
+map("n", "<C-l>", "<C-W>l", { silent = true })
+
+
 -- Get the binary path for opam
 local opambin = vim.fn.system("opam config var bin"):gsub("\n$", "")
 
@@ -32,8 +39,6 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
-
 vim.wo.relativenumber = true
 vim.opt.termguicolors = true
 
@@ -1457,3 +1462,4 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 })
 
 vim.g.loaded_perl_provider = 0
+
