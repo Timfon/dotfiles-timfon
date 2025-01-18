@@ -1,0 +1,125 @@
+# [[ Login ]]
+
+# Start AeroSpace at login
+start-at-login = true
+
+# Commands to run after the macOS user has logged on and Aerospace has started
+# `start-at-login` must be `true` to trigger these commands in succession
+# See: https://nikitabobko.github.io/AeroSpace/commands
+after-login-command = []
+# after-startup-command = [
+#   'exec-and-forget borders active_color=0xFF45c4c0 inactive_color=0xff494d64 width=10.0'
+# ]
+after-startup-command = [
+  'exec-and-forget borders "active_color=gradient(top_left=0xFF45c4c0,bottom_right=0xFFba3aa5)" "inactive_color=0x00RRGGBB" width=10'
+]
+
+# [[ Key Maps ]]
+#   See: https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+key-mapping.preset = 'qwerty'
+
+# [[ Normalization ]]
+#   See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# [[ Layouts ]]
+#   See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+
+# Use tiles by default, creating splits on the widest axis
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+# Follow focused monitor and/or window when focus changes
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
+
+# The size of accordion padding
+accordion-padding = 15
+
+# Gaps between windows (inner-*) and between monitor edges (outer-*).
+[gaps]
+inner.horizontal = 20
+inner.vertical =   20
+outer.left =       20
+outer.bottom =     20
+outer.top =        20
+outer.right =      20
+
+# [[ Main Binding ]]
+#   See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+#        https://nikitabobko.github.io/AeroSpace/commands
+[mode.main.binding]
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#resize
+alt-shift-minus = 'resize smart -50'
+alt-shift-equal = 'resize smart +50'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+alt-d = 'workspace D' # Debug
+alt-e = 'workspace E' # Email
+alt-s = 'workspace S' # Social
+
+# Moves node to another workspace and then switches to that workspace
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+alt-shift-d = ['move-node-to-workspace D', 'workspace D'] # Debug
+alt-shift-e = ['move-node-to-workspace E', 'workspace E'] # Email
+alt-shift-s = ['move-node-to-workspace S', 'workspace S'] # Social
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+alt-tab = 'workspace-back-and-forth'
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
+alt-shift-semicolon = 'mode service'
+
+# [[ Service Mode ]]
+#   See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.service.binding]
+
+esc = ['reload-config', 'mode main']                       # Reload configuration
+r = ['flatten-workspace-tree', 'mode main']                # Reset layout
+f = ['layout floating tiling', 'mode main']                # Toggle between floating and tiling layout
+backspace = ['close-all-windows-but-current', 'mode main'] # Close all windows in worspace except focused
+
+# Window joins to create smaller splits within a larger split
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-j = ['join-with down', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
+alt-shift-l = ['join-with right', 'mode main']
+
