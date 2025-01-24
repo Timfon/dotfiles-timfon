@@ -105,6 +105,9 @@ alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
+alt-f = 'fullscreen'
+alt-shift-f = 'macos-native-fullscreen'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 
@@ -118,8 +121,8 @@ f = ['layout floating tiling', 'mode main']                # Toggle between floa
 backspace = ['close-all-windows-but-current', 'mode main'] # Close all windows in worspace except focused
 
 # Window joins to create smaller splits within a larger split
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
+h = ['join-with left', 'mode main']
+j = ['join-with down', 'mode main']
+k = ['join-with up', 'mode main']
+l = ['join-with right', 'mode main']
 
